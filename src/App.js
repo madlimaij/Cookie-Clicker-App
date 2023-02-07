@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
+import Cookie from './resources/cookie.png';
+import CookieNoCrumbs from './resources/cookieNoCrumbs.png';
 
 function App() {
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    const newCount = count + 1;
+    setCount(newCount);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Küpsiseloendur</h1>
+      <button onClick={() => setCount(0)} className="bubble">
+        NULLI
+      </button>
+      <img
+        alt="cookie"
+        src={count === 1 ? CookieNoCrumbs : Cookie}
+        onClick={handleClick}
+        name="cookie-increment"
+      ></img>
+      <h2 id="cookie-count">{count}</h2>
     </div>
   );
 }
